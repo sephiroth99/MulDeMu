@@ -10,41 +10,41 @@ namespace MulDeMu
 		{
 			string currFile = "";
 			string currPath = "";
-			uint filesCount = 0;
-            bool isSeparate = false;
+			uint srcCount = 0;
+            bool isSeparatedChannels = false;
 
 			Console.Write("\nMulDeMu 0.1.0\nby sephiroth99\n\n");
 			
 			if (args.Length <= 0 || args[0] == "-h" || args[0] == "-?" || args[0] == "--help")
 			{
-				Console.Write("Usage:\nmuldemu [option] file1 [file2 ...]\n\n");
-                Console.Write("This program demultiplexes Tomb Raider Underworld mul files. By default, audio channels are written in a single WAV file.\n\n");
+                Console.Write("This program demultiplexes Tomb Raider Underworld mul files. By default, audio channels are written in a single WAV file.\n\n");   
+                Console.Write("Usage:\nmuldemu [option] file1 [file2 ...]\n\n");
                 Console.Write("Options:\n -s --split  Write each audio channel to its own WAV file\n -h --help   This help menu\n");
 				System.Environment.Exit(0);
 			}
             else if (args[0] == "-s" || args[0] == "--split")
             {
-                isSeparate = true;
-                filesCount = (uint)args.Length - 1;
+                isSeparatedChannels = true;
+                srcCount = (uint)args.Length - 1;
                 args = args.Skip(1).ToArray();
             }
             else
             {
-                filesCount = (uint)args.Length;
+                srcCount = (uint)args.Length;
             }
 
 
-			for (int i = 0; i < filesCount; i++)
+			for (int i = 0; i < srcCount; i++)
 			{
 				currPath = args[i];
 				currFile = Path.GetFileName(currPath);
 
-				Console.Write("[{1}/{2}] - {0}\n", currFile, i + 1, filesCount);
+				Console.Write("[{1}/{2}] - {0}\n", currFile, i + 1, srcCount);
 
 				try
 				{
 					MulFile file = new MulFile(new BinaryReader(File.Open(currPath, FileMode.Open, FileAccess.Read)));
-					Console.WriteLine("Sampling rate      : {0} Hz\nNumber of channels : {1}\nLooped playback    : {2}", file.SamplingRate, file.NbChannelMul, (file.IsLoop)?"Yes":"No");
+					Console.WriteLine("Sampling rate      : {0} Hz\nNumber of channels : {1}\n", file.SamplingRate, file.NbChannelMul);
 
 					if (file.IsCineData)
 					{
@@ -55,7 +55,7 @@ namespace MulDeMu
 						Console.WriteLine(String.Format("Cinematic data found and written to {0}.cine", currFile));
 					}
 
-                    if (isSeparate)
+                    if (isSeparatedChannels)
                     {
                         for (int ch = 0; ch < file.NbChannelMul; ch++)
                         {
