@@ -10,7 +10,8 @@ wav file, or to multiple monochannel 16-bits PCM wav files. If it detects
 cinematic data, it will extract it.
 
 The audio conversion algorithm is based on the one in DarkFader's mul2wav. His
-program crashes with some mul files containing cinematic data.
+program crashes with some mul files containing cinematic data, so I made this
+one. Also, I wanted an open-source program to convert TRU audio.
 
 
 How to use:
