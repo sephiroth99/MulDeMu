@@ -17,7 +17,7 @@ namespace MulDeMu
 		private UInt32 samplingRate;
 		private UInt32 loopAdr;
 		private UInt32 sampleCount;
-		private UInt32 audioChunkCount;
+		//private UInt32 audioChunkCount;
 		private UInt32 nbChannelMul;
 
 		private bool isValidMulFile;
@@ -77,8 +77,8 @@ namespace MulDeMu
 
 			// Read chunk count
 			// Offset valid for TRU MUL files only (?)
-			data.BaseStream.Seek(40, SeekOrigin.Current);			
-			this.audioChunkCount = (UInt32)data.ReadSingle();
+			//data.BaseStream.Seek(40, SeekOrigin.Current);			
+			//this.audioChunkCount = (UInt32)data.ReadSingle();
 			
 			// Header done
 
@@ -180,14 +180,15 @@ namespace MulDeMu
 				data.BaseStream.Seek(nextChunkAdr, SeekOrigin.Begin);
 			}
 
-			if (audioChunks == (this.audioChunkCount + 1))
+			/*if (audioChunks == (this.audioChunkCount + 1))
 			{
 				this.isValidMulFile = true;
 			}
 			else
 			{
 				throw new MulFileException("Wrong chunk count!");
-			}
+			}*/
+            this.isValidMulFile = true;
 			
 		}
 
@@ -350,13 +351,13 @@ namespace MulDeMu
 			}
 		}
 
-		internal UInt32 AudioChunkCount
+		/*internal UInt32 AudioChunkCount
 		{
 			get
 			{
 				return this.audioChunkCount;
 			}
-		}
+		}*/
 
 		internal UInt32 NbChannelMul
 		{

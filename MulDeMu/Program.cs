@@ -13,7 +13,7 @@ namespace MulDeMu
 			uint srcCount = 0;
             bool isSeparatedChannels = false;
 
-			Console.Write("\nMulDeMu 0.1.0\nby sephiroth99\n\n");
+			Console.Write("\nMulDeMu 0.1.1\nby sephiroth99\n\n");
 			
 			if (args.Length <= 0 || args[0] == "-h" || args[0] == "-?" || args[0] == "--help")
 			{
