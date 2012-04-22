@@ -1,13 +1,16 @@
-MulDeMu version 0.1.0
+MulDeMu version 0.1.1
 
 by sephiroth99
 
-This program demultiplexes Tomb Raider Underworld's (TRU) "mul" files.
+This program demultiplexes Tomb Raider "mul" files. Mul files are used in
+Crystal Dynamics' Tomb Raider games (TRL, TRA, TRU, LCGoL). MulDeMu is only
+compatible with the PC version of those games.
 
-In TRU, "mul" files contain audio data and sometimes, cinematic data (used for
-cutscenes). MulDeMu will convert the audio to a single multichannel 16-bits PCM
-wav file, or to multiple monochannel 16-bits PCM wav files. If it detects
-cinematic data, it will extract it.
+Mul files contain audio data and sometimes, cinematic data (most likely used
+for cutscenes). MulDeMu will convert the audio to a single multichannel 16-bit
+PCM WAVE file, or to multiple monochannel 16-bit PCM WAVE files. If it detects
+cinematic data, it will extract it in raw form. By default, cinematic data is
+not extracted.
 
 The audio conversion algorithm is based on the one in DarkFader's mul2wav. His
 program crashes with some mul files containing cinematic data, so I made this
@@ -15,7 +18,7 @@ one. Also, I wanted an open-source program to convert TRU audio.
 
 
 How to use:
-muldemu [option] file1 [file2 ...]
+muldemu [options] file1 [file2 ...]
 
 You need to give at least one file to convert. You can give as many files as
 you want.
@@ -23,6 +26,7 @@ you want.
 Options are:
 -s --split   : Write multiple mono wav files, instead of a single multichannel
                wav file.
+-c --cine    : Enable cinematic data output.
 -h -? --help : Help menu
 
 

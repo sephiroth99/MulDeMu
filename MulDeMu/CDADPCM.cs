@@ -39,7 +39,7 @@ namespace MulDeMu
         public static byte[] DecodeBlock(byte[] data)
         {
             int ptr = 0;
-            
+
             var ms = new MemoryStream();
             var bw = new BinaryWriter(ms);
 
@@ -62,14 +62,14 @@ namespace MulDeMu
                 bw.Write(GetSample(data[ptr] & 0x0F));
                 bw.Write(GetSample(data[ptr++] >> 4));
             }
-            
+
             return ms.ToArray();
         }
 
         private static Int16 GetSample(int code)
         {
             Int16 delta;
-            
+
             Int16 val1 = (Int16)StepTable[index];
             Int16 val2 = (Int16)InitTable[code];
             delta = (Int16)((val1 * val2) >> 16);
@@ -89,10 +89,10 @@ namespace MulDeMu
             {
                 tmp = Int16.MinValue;
             }
-                        
+
             value = (Int16)tmp;
 
             return value;
         }
-	}
+    }
 }
